@@ -9,6 +9,7 @@ public class Servidor {
 
         while (true) {
             Socket jogador1 = serverSocket.accept(); // Aceita a conexão do jogador 1
+            System.out.println("Jogador Conectado");
             Socket jogador2 = serverSocket.accept(); // Aceita a conexão do jogador 2
 
             // Cria uma nova thread para cada jogo

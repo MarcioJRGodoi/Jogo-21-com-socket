@@ -18,8 +18,6 @@ public class Cliente {
                 BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
                 String numCartas = leitor.readLine();
                 out.println(numCartas);
-            } else if ("Você ganhou!".equals(mensagemDoServidor) || "Você perdeu!".equals(mensagemDoServidor) || "Empate!".equals(mensagemDoServidor)) {
-                break;
             }
         }
 
