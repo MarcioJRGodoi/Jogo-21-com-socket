@@ -31,18 +31,26 @@ class Jogo implements Runnable {
 
             int pontuacaoJogador1 = 0;
             int pontuacaoJogador2 = 0;
+            boolean jogoAtivo = true;
+            
+            while(jogoAtivo) {
+            	outJogador1.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
 
-            outJogador1.println("Quantas cartas você quer?");
-            int numCartasJogador1 = Integer.parseInt(inJogador1.readLine());
-            for (int i = 0; i < numCartasJogador1; i++) {
-                pontuacaoJogador1 += baralho.pegarCarta();
+                int numCartasJogador1 = Integer.parseInt(inJogador1.readLine());
+                if (numCartasJogador1 == 1) {
+                    pontuacaoJogador1 += baralho.pegarCarta();
+                }
+                
+                outJogador2.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
+                int numCartasJogador2 = Integer.parseInt(inJogador2.readLine());
+                if (numCartasJogador2 == 1) {
+                    pontuacaoJogador2 += baralho.pegarCarta();
+                }
+                if(numCartasJogador1 != 1 && numCartasJogador2 != 1) {
+                	jogoAtivo = false;
+                }
             }
-
-            outJogador2.println("Quantas cartas você quer?");
-            int numCartasJogador2 = Integer.parseInt(inJogador2.readLine());
-            for (int i = 0; i < numCartasJogador2; i++) {
-                pontuacaoJogador2 += baralho.pegarCarta();
-            }
+            
             
             if (pontuacaoJogador1 > pontuacaoJogador2 && pontuacaoJogador1 <= 21) {
                 outJogador1.println("Você ganhou!");

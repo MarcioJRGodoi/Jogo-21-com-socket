@@ -14,7 +14,7 @@ public class Cliente {
         while ((mensagemDoServidor = in.readLine()) != null) {
             System.out.println("Mensagem do servidor: " + mensagemDoServidor);
 
-            if ("Quantas cartas você quer?".equals(mensagemDoServidor)) {
+            if ("Quer pegar uma carta? 1 - Sim, 2 - Não".equals(mensagemDoServidor)) {
                 BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
                 String numCartas = leitor.readLine();
                 out.println(numCartas);
