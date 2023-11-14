@@ -20,7 +20,7 @@ public class Cliente {
 	            out.println(numCartas);
             }
                 while ((mensagemDoServidor = in.readLine()) != null) {
-                    if ("FIM".equals(mensagemDoServidor)) {
+                    if ("*".equals(mensagemDoServidor)) {
                         break;
                     }
                     System.out.println("Mensagem do servidor: " + mensagemDoServidor);

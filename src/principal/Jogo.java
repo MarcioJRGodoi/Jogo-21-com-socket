@@ -55,10 +55,10 @@ class Jogo implements Runnable {
                 }
                 outJogador2.println("Suas Cartas"+ cartasJogador2);
                 outJogador2.println("Numero de cartas do adversario: "+ cartasJogador1.size());
-                outJogador2.println("FIM");
+                outJogador2.println("*");
                 outJogador1.println("Suas Cartas"+ cartasJogador1);
                 outJogador1.println("Numero de cartas do adversario: "+ cartasJogador2.size());
-                outJogador1.println("FIM");
+                outJogador1.println("*");
                 if(numCartasJogador1 != 1 && numCartasJogador2 != 1) {
                 	jogoAtivo = false;
                 }
@@ -77,9 +77,9 @@ class Jogo implements Runnable {
             }
             
             outJogador1.println("Sua pontuacao: " +pontuacaoJogador1 + " Pontuacao do Adversario: " +pontuacaoJogador2);
-            outJogador1.println("FIM");
+            outJogador1.println("*");
             outJogador2.println("Sua pontuacao: " +pontuacaoJogador2 + " Pontuacao do Adversario: " +pontuacaoJogador1);
-            outJogador2.println("FIM");
+            outJogador2.println("*");
         } catch (IOException e) {
             System.out.println("Falha ao lidar com o jogo: " + e.getMessage());
         } finally {
