@@ -50,7 +50,7 @@ class Jogo implements Runnable {
                 int numCartasJogador2 = Integer.parseInt(inJogador2.readLine());
                 if (numCartasJogador2 == 1) {
                 	Carta carta = baralho.pegarCarta();
-                    pontuacaoJogador1 += carta.getValor();
+                    pontuacaoJogador2 += carta.getValor();
                     cartasJogador2.add(carta.getNome());
                 }
                 outJogador2.println("Suas Cartas"+ cartasJogador2);

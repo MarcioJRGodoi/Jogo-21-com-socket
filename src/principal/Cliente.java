@@ -12,12 +12,13 @@ public class Cliente {
 
         String mensagemDoServidor;
         while ((mensagemDoServidor = in.readLine()) != null) {
-            System.out.println("Mensagem do servidor: " + mensagemDoServidor);
-
-                BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
-                String numCartas = leitor.readLine();
-                out.println(numCartas);
-
+        	System.out.println("Mensagem do servidor: " + mensagemDoServidor);
+        	if(mensagemDoServidor.equals("Quer pegar uma carta? 1 - Sim, 2 - Não")) 
+        	{
+	            BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
+	            String numCartas = leitor.readLine();
+	            out.println(numCartas);
+            }
                 while ((mensagemDoServidor = in.readLine()) != null) {
                     if ("FIM".equals(mensagemDoServidor)) {
                         break;
