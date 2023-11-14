@@ -45,9 +45,6 @@ class Jogo implements Runnable {
                     pontuacaoJogador1 += carta.getValor();
                     cartasJogador1.add(carta.getNome());
                 }
-                outJogador1.write("Suas Cartas"+ cartasJogador1+ "\n");
-                outJogador1.write("Numero de cartas do adversario: "+ cartasJogador2.size()+ "\n");
-                outJogador1.write("FIM");
                 
                 outJogador2.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
                 int numCartasJogador2 = Integer.parseInt(inJogador2.readLine());
@@ -56,10 +53,12 @@ class Jogo implements Runnable {
                     pontuacaoJogador1 += carta.getValor();
                     cartasJogador2.add(carta.getNome());
                 }
-                outJogador2.write("Suas Cartas"+ cartasJogador2+ "\n");
-                outJogador2.write("Numero de cartas do adversario: "+ cartasJogador1.size()+ "\n");
-                outJogador2.write("FIM");
-                
+                outJogador2.println("Suas Cartas"+ cartasJogador2);
+                outJogador2.println("Numero de cartas do adversario: "+ cartasJogador1.size());
+                outJogador2.println("FIM");
+                outJogador1.println("Suas Cartas"+ cartasJogador1);
+                outJogador1.println("Numero de cartas do adversario: "+ cartasJogador2.size());
+                outJogador1.println("FIM");
                 if(numCartasJogador1 != 1 && numCartasJogador2 != 1) {
                 	jogoAtivo = false;
                 }
@@ -67,20 +66,20 @@ class Jogo implements Runnable {
             
             
             if (pontuacaoJogador1 > pontuacaoJogador2 && pontuacaoJogador1 <= 21) {
-                outJogador1.write("Você ganhou!\n");
-                outJogador2.write("Você perdeu!");
+                outJogador1.println("Você ganhou!");
+                outJogador2.println("Você perdeu!");
             } else if (pontuacaoJogador2 > pontuacaoJogador1 && pontuacaoJogador2 <= 21) {
-                outJogador1.write("Você perdeu!\n");
-                outJogador2.write("Você ganhou!");
+                outJogador1.println("Você perdeu!");
+                outJogador2.println("Você ganhou!");
             } else {
-                outJogador1.write("Empate!\n");
-                outJogador2.write("Empate!");
+                outJogador1.println("Empate!");
+                outJogador2.println("Empate!");
             }
             
-            outJogador1.write("Sua pontuacao: " +pontuacaoJogador1 + " Pontuacao do Adversario: " +pontuacaoJogador2);
-            
-            outJogador2.write("Sua pontuacao: " +pontuacaoJogador2 + " Pontuacao do Adversario: " +pontuacaoJogador1);
-
+            outJogador1.println("Sua pontuacao: " +pontuacaoJogador1 + " Pontuacao do Adversario: " +pontuacaoJogador2);
+            outJogador1.println("FIM");
+            outJogador2.println("Sua pontuacao: " +pontuacaoJogador2 + " Pontuacao do Adversario: " +pontuacaoJogador1);
+            outJogador2.println("FIM");
         } catch (IOException e) {
             System.out.println("Falha ao lidar com o jogo: " + e.getMessage());
         } finally {
