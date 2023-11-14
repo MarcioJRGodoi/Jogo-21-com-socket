@@ -14,12 +14,17 @@ public class Cliente {
         while ((mensagemDoServidor = in.readLine()) != null) {
             System.out.println("Mensagem do servidor: " + mensagemDoServidor);
 
-            if ("Quer pegar uma carta? 1 - Sim, 2 - Não".equals(mensagemDoServidor)) {
                 BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
                 String numCartas = leitor.readLine();
                 out.println(numCartas);
-            }
+
+                while ((mensagemDoServidor = in.readLine()) != null) {
+                    if ("FIM".equals(mensagemDoServidor)) {
+                        break;
+                    }
+                    System.out.println("Mensagem do servidor: " + mensagemDoServidor);
         }
+                }
 
         socket.close();
     }
