@@ -12,9 +12,9 @@ import java.net.Socket;
 
 public class ClienteGUI {
     private JFrame frame;
-    private JButton botaoPegarCarta;
-    private JButton botaoNaoPegarCarta;
-    private JTextArea areaTexto;
+    private JButton btnPegarCarta;
+    private JButton btnNaoPegarCarta;
+    private JTextArea txtArea;
     private BufferedReader in;
     private PrintWriter out;
 
@@ -28,37 +28,41 @@ public class ClienteGUI {
         frame.setSize(500, 400);
 
         // Cria o JButton para pegar uma carta
-        botaoPegarCarta = new JButton("Pegar Carta");
-        botaoPegarCarta.addActionListener(new ActionListener() {
+        btnPegarCarta = new JButton("Pegar Carta");
+        btnPegarCarta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Envia a resposta para o servidor
                 out.println("1");
+                btnPegarCarta.setEnabled(false);
+                btnNaoPegarCarta.setEnabled(false);
+                txtArea.append("Aguardando Jogador Adversario...\n");
             }
         });
 
         // Cria o JButton para não pegar uma carta
-        botaoNaoPegarCarta = new JButton("Não Pegar Carta");
-        botaoNaoPegarCarta.addActionListener(new ActionListener() {
+        btnNaoPegarCarta = new JButton("Não Pegar Carta");
+        btnNaoPegarCarta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Envia a resposta para o servidor
                 out.println("2");
+                btnPegarCarta.setEnabled(false);
+                btnNaoPegarCarta.setEnabled(false);
+                txtArea.append("Aguardando Jogador Adversario...\n");
             }
         });
 
-        // Cria a JTextArea
-        areaTexto = new JTextArea();
-        areaTexto.setEditable(false);
+        txtArea = new JTextArea();
+        txtArea.setEditable(false);
 
         // Adiciona os componentes ao JFrame
         JPanel painelBotoes = new JPanel();
-        painelBotoes.add(botaoPegarCarta);
-        painelBotoes.add(botaoNaoPegarCarta);
+        painelBotoes.add(btnPegarCarta);
+        painelBotoes.add(btnNaoPegarCarta);
         frame.getContentPane().add(BorderLayout.SOUTH, painelBotoes);
-        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(areaTexto));
+        frame.getContentPane().add(BorderLayout.CENTER, new JScrollPane(txtArea));
 
-        // Torna o JFrame visível
         frame.setVisible(true);
 
         // Inicia a thread de leitura
@@ -68,8 +72,13 @@ public class ClienteGUI {
                 try {
                     String mensagemDoServidor;
                     while ((mensagemDoServidor = in.readLine()) != null) {
-                        areaTexto.append("Mensagem do servidor: " + mensagemDoServidor + "\n");
+                    	txtArea.append("Mensagem do servidor: " + mensagemDoServidor + "\n");
+                    	btnPegarCarta.setEnabled(true);
+                        btnNaoPegarCarta.setEnabled(true);
                         }
+                    btnPegarCarta.setEnabled(false);
+                    btnNaoPegarCarta.setEnabled(false);
+                    socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

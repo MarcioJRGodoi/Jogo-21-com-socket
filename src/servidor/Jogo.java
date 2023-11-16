@@ -88,7 +88,8 @@ class Jogo implements Runnable {
                 //outJogador1.println("*");
             }
             
-            
+            outJogador1.println("--------------------------------------------------------");
+            outJogador2.println("--------------------------------------------------------");
             if (pontuacaoJogador1 > pontuacaoJogador2 && pontuacaoJogador1 <= 21) {
                 outJogador1.println("Você ganhou!");
                 outJogador2.println("Você perdeu!");
@@ -99,11 +100,9 @@ class Jogo implements Runnable {
                 outJogador1.println("Empate!");
                 outJogador2.println("Empate!");
             }
-            
+           
             outJogador1.println("Sua pontuacao: " +pontuacaoJogador1 + " Pontuacao do Adversario: " +pontuacaoJogador2);
-            outJogador1.println("*");
             outJogador2.println("Sua pontuacao: " +pontuacaoJogador2 + " Pontuacao do Adversario: " +pontuacaoJogador1);
-            outJogador2.println("*");
         } catch (IOException e) {
             System.out.println("Falha ao lidar com o jogo: " + e.getMessage());
         } finally {
