@@ -1,10 +1,12 @@
-package principal;
+package servidor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 class Jogo implements Runnable {
     private Socket jogador1;
@@ -31,24 +33,55 @@ class Jogo implements Runnable {
 
             int pontuacaoJogador1 = 0;
             int pontuacaoJogador2 = 0;
-            boolean jogoAtivo = true;
+            List<String> cartasJogador1 = new ArrayList<String>();
+            List<String> cartasJogador2 = new ArrayList<String>();
+            List<Carta> asNaManga1 = new ArrayList<Carta>();
+            List<Carta> asNaManga2 = new ArrayList<Carta>();
             
-            while(jogoAtivo) {
+            while(true) {
             	outJogador1.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
-
+            	outJogador2.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
                 int numCartasJogador1 = Integer.parseInt(inJogador1.readLine());
                 if (numCartasJogador1 == 1) {
-                    pontuacaoJogador1 += baralho.pegarCarta();
+                	Carta carta = baralho.pegarCarta();
+                	if(carta.getNome().contains("Ás")) 
+                	{
+                		asNaManga1.add(carta);
+                	}
+                	if(asNaManga1.size() > 0 && pontuacaoJogador1 > 10) {
+                		pontuacaoJogador1 -= 10;
+                		asNaManga1.remove(0);
+                	}
+                		pontuacaoJogador1 += carta.getValor();
+                        cartasJogador1.add(carta.getNome());
                 }
-                
-                outJogador2.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
+                          
                 int numCartasJogador2 = Integer.parseInt(inJogador2.readLine());
                 if (numCartasJogador2 == 1) {
-                    pontuacaoJogador2 += baralho.pegarCarta();
+                	Carta carta = baralho.pegarCarta();
+                	if(carta.getNome().contains("Ás")) 
+                	{
+                		asNaManga2.add(carta);
+                	}
+                	if(asNaManga2.size() > 0 && pontuacaoJogador2 > 10) {
+                		pontuacaoJogador2 -= 10;
+                		asNaManga2.remove(0);
+                	}
+                		pontuacaoJogador2 += carta.getValor();
+                        cartasJogador2.add(carta.getNome());
                 }
+                
                 if(numCartasJogador1 != 1 && numCartasJogador2 != 1) {
-                	jogoAtivo = false;
+                	break;
                 }
+                outJogador2.println("Suas Cartas"+ cartasJogador2);
+                outJogador2.println("Numero de cartas do adversario: "+ cartasJogador1.size());
+                outJogador2.println();
+                outJogador2.println("*");
+                outJogador1.println("Suas Cartas"+ cartasJogador1);
+                outJogador1.println("Numero de cartas do adversario: "+ cartasJogador2.size());
+                outJogador1.println();
+                outJogador1.println("*");
             }
             
             
@@ -63,11 +96,10 @@ class Jogo implements Runnable {
                 outJogador2.println("Empate!");
             }
             
-            outJogador1.println("Sua pontuacao: " +pontuacaoJogador1);
-            outJogador1.println("Pontuacao do Adversario: " +pontuacaoJogador2);
-            
-            outJogador2.println("Sua pontuacao: " +pontuacaoJogador2);
-            outJogador2.println("Pontuacao do Adversario: " +pontuacaoJogador1);
+            outJogador1.println("Sua pontuacao: " +pontuacaoJogador1 + " Pontuacao do Adversario: " +pontuacaoJogador2);
+            outJogador1.println("*");
+            outJogador2.println("Sua pontuacao: " +pontuacaoJogador2 + " Pontuacao do Adversario: " +pontuacaoJogador1);
+            outJogador2.println("*");
         } catch (IOException e) {
             System.out.println("Falha ao lidar com o jogo: " + e.getMessage());
         } finally {
