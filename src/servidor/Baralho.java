@@ -1,4 +1,4 @@
-package principal;
+package servidor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,14 @@ public class Baralho {
         for (String naipe : naipes) {
             for (int i = 0; i < valores.length; i++) {
                 String nome = valores[i] + " de " + naipe;
-                int valor = i+1; // Ás vale 1, números valem o número, figuras valem 11, 12 e 13
+                int valor;
+                if (i == 0) { // Ás
+                    valor = 11; // Pode ser 1 ou 11
+                } else if (i >= 10) { // Valete, Dama, Rei
+                    valor = 10;
+                } else { // Cartas numeradas
+                    valor = i + 1;
+                }
                 cartas.add(new Carta(valor, nome));
             }
         }

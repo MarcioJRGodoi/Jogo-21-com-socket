@@ -1,4 +1,4 @@
-package principal;
+package cliente;
 
 import java.io.*;
 import java.net.*;

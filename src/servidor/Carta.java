@@ -1,4 +1,4 @@
-package principal;
+package servidor;
 
 public class Carta {
     private int valor;
