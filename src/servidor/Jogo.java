@@ -39,8 +39,10 @@ class Jogo implements Runnable {
             List<Carta> asNaManga2 = new ArrayList<Carta>();
             
             while(true) {
-            	outJogador1.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
-            	outJogador2.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
+            	outJogador1.println("Quer pegar uma carta?");
+            	outJogador2.println("Quer pegar uma carta?");
+            	
+            	
                 int numCartasJogador1 = Integer.parseInt(inJogador1.readLine());
                 if (numCartasJogador1 == 1) {
                 	Carta carta = baralho.pegarCarta();
@@ -74,14 +76,16 @@ class Jogo implements Runnable {
                 if(numCartasJogador1 != 1 && numCartasJogador2 != 1) {
                 	break;
                 }
+                outJogador2.println("--------------------------------------------------------");
                 outJogador2.println("Suas Cartas"+ cartasJogador2);
                 outJogador2.println("Numero de cartas do adversario: "+ cartasJogador1.size());
-                outJogador2.println();
-                outJogador2.println("*");
+                outJogador2.println("--------------------------------------------------------");
+                //outJogador2.println("*");
+                outJogador1.println("--------------------------------------------------------");
                 outJogador1.println("Suas Cartas"+ cartasJogador1);
                 outJogador1.println("Numero de cartas do adversario: "+ cartasJogador2.size());
-                outJogador1.println();
-                outJogador1.println("*");
+                outJogador1.println("--------------------------------------------------------");
+                //outJogador1.println("*");
             }
             
             
