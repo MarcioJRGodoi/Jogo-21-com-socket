@@ -27,6 +27,8 @@ public class ClienteGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 400);
 
+        ImageIcon icone = new ImageIcon("cliente/blackjack.png");
+        frame.setIconImage(icone.getImage());
         // Cria o JButton para pegar uma carta
         btnPegarCarta = new JButton("Pegar Carta");
         btnPegarCarta.addActionListener(new ActionListener() {
@@ -36,7 +38,6 @@ public class ClienteGUI {
                 out.println("1");
                 btnPegarCarta.setEnabled(false);
                 btnNaoPegarCarta.setEnabled(false);
-                txtArea.append("Aguardando Jogador Adversario...\n");
             }
         });
 
@@ -49,7 +50,6 @@ public class ClienteGUI {
                 out.println("2");
                 btnPegarCarta.setEnabled(false);
                 btnNaoPegarCarta.setEnabled(false);
-                txtArea.append("Aguardando Jogador Adversario...\n");
             }
         });
 
@@ -93,11 +93,11 @@ public class ClienteGUI {
             }
         }).start();
     }
-
+/*
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket("localhost", 9000); // Conecta ao servidor na porta 9000
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         new ClienteGUI(socket, in, out);
-    }
+    }*/
 }
