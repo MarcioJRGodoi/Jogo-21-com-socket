@@ -25,10 +25,13 @@ public class ClienteGUI {
         // Cria o JFrame
         frame = new JFrame("21(BlackJack)");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
 
-        ImageIcon icone = new ImageIcon("cliente/blackjack.png");
+        ImageIcon icone = new ImageIcon("cliente/blackjack.jpg");
         frame.setIconImage(icone.getImage());
+        
         // Cria o JButton para pegar uma carta
         btnPegarCarta = new JButton("Pegar Carta");
         btnPegarCarta.addActionListener(new ActionListener() {
@@ -75,13 +78,16 @@ public class ClienteGUI {
                     	txtArea.append("Mensagem do servidor: " + mensagemDoServidor + "\n");
                     	btnPegarCarta.setEnabled(true);
                         btnNaoPegarCarta.setEnabled(true);
-                        }
+                    }
+                    
                     btnPegarCarta.setEnabled(false);
                     btnNaoPegarCarta.setEnabled(false);
                     
                 } catch (IOException e) {
                     e.printStackTrace();
-                }finally 
+                }
+                
+                finally 
                 {
                 	try {
 						socket.close();
