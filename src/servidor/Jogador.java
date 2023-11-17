@@ -16,7 +16,8 @@ public class Jogador {
     private List<String> cartas;
     private List<Carta> asNaManga;
 
-    public Jogador(Socket socket) throws IOException {
+    public Jogador(Socket socket) throws IOException 
+    {
     	this.socket = socket;
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream(), true);
@@ -29,9 +30,9 @@ public class Jogador {
     	out.println("Quer pegar uma carta?");
     }
 
-    public boolean querCarta(Baralho baralho) throws IOException {
-    	
-         if(Integer.parseInt(in.readLine()) == 1) 
+    public boolean querCarta(Baralho baralho) throws IOException 
+    {   	
+         if(cartas.isEmpty() ||Integer.parseInt(in.readLine()) == 1) 
          {
         	 Carta carta = baralho.pegarCarta();
          	if(carta.getNome().contains("Ás")) 
@@ -53,10 +54,16 @@ public class Jogador {
         return pontuacao;
     }
     
-    public void mostrarCartasDaMesa(int numCartasAdversario) {
+    public String primeiraCarta() {
+    	return cartas.get(0);
+    }
+    
+    public void mostrarCartasDaMesa(int numCartasAdversario, String cartaadv) 
+    {
     	out.println("--------------------------------------------------------");
         out.println("Suas Cartas: " + cartas);
         out.println("Número de cartas do adversário: " + numCartasAdversario);
+        out.println("Carta aberta adversario: " + cartaadv);
         out.println("--------------------------------------------------------");
         //out.println();
         //out.println("*");
@@ -66,7 +73,8 @@ public class Jogador {
         return cartas.size();
     }
     
-    public void resultado(int pontuacaoAdversario) {
+    public void resultado(int pontuacaoAdversario) 
+    {
     	if (pontuacao > 21) {
     	    if (pontuacaoAdversario > 21) {
     	        out.println("Empate!");
@@ -84,7 +92,8 @@ public class Jogador {
     	//out.println("*");
     }
     
-    public void close() throws IOException {
+    public void close() throws IOException 
+    {
 		in.close();
 		out.close();
 		socket.close();
