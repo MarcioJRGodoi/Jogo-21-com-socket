@@ -24,25 +24,33 @@ public class Jogador {
         this.cartas = new ArrayList<>();
         this.asNaManga = new ArrayList<>();
     }
-
-    public boolean querCarta() throws IOException {
-        out.println("Quer pegar uma carta? 1 - Sim, 2 - Não");
-        return Integer.parseInt(in.readLine()) == 1;
+    
+    public void mostrarMensagem() throws IOException {
+    	out.println("Quer pegar uma carta?");
     }
 
-    public void pegarCarta(Carta carta) {
-        if(carta.getNome().contains("Ás")) {
-            asNaManga.add(carta);
-        }
-        if(asNaManga.size() > 0 && pontuacao > 10) {
-            pontuacao -= 10;
-            asNaManga.remove(0);
-        }
-        pontuacao += carta.getValor();
-        cartas.add(carta.getNome());
+    public int querCarta(Baralho baralho) throws IOException {
+    	
+         if(Integer.parseInt(in.readLine()) == 1) 
+         {
+        	 Carta carta = baralho.pegarCarta();
+         	if(carta.getNome().contains("Ás")) 
+         	{
+         		asNaManga.add(carta);
+         	}
+         	if(asNaManga.size() > 0 && pontuacao > 10) {
+         		pontuacao -= 10;
+         		asNaManga.remove(0);
+         	}
+         	pontuacao += carta.getValor();
+                 cartas.add(carta.getNome());
+        	 return 1;
+         }
+         return 2;
     }
 
     public void mostrarCartas() {
+    	out.println("--------------------------------------------------------");
         out.println("Suas Cartas"+ cartas);
     }
 
@@ -50,30 +58,29 @@ public class Jogador {
         return pontuacao;
     }
     
-    public void mostrarCartasAdversario(int numCartasAdversario) {
+    public void mostrarCartasDaMesa(int numCartasAdversario) {
+    	out.println("--------------------------------------------------------");
         out.println("Suas Cartas: " + cartas);
         out.println("Número de cartas do adversário: " + numCartasAdversario);
-        out.println();
-        out.println("*");
+        out.println("--------------------------------------------------------");
+        //out.println();
+        //out.println("*");
     }
     
     public int getNumCartas() {
         return cartas.size();
     }
     
-    public void ganhou() {
-    	out.println("Você ganhou!");
-    }
-    public void perdeu() {
-    	out.println("Você perdeu!");
-    }
-    public void empatou() {
-    	out.println("Empate!");
-    }
-    
-    public void resultado(int pontuacao) {
-    	out.println("Sua pontuacao: " +getPontuacao() + " Pontuacao do Adversario: " +pontuacao);
-    	out.println("*");
+    public void resultado(int pontuacaoAdversario) {
+    	if (pontuacao > pontuacaoAdversario && pontuacao <= 21) {
+            out.println("Você ganhou!");
+        } else if (pontuacaoAdversario > pontuacao && pontuacaoAdversario <= 21) {
+            out.println("Você perdeu!");
+        } else {
+            out.println("Empate!");
+        }
+    	out.println("Sua pontuacao: " +getPontuacao() + " Pontuacao do Adversario: " +pontuacaoAdversario);
+    	//out.println("*");
     }
     
     public void close() throws IOException {
