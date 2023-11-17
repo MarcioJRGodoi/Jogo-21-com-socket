@@ -78,9 +78,17 @@ public class ClienteGUI {
                         }
                     btnPegarCarta.setEnabled(false);
                     btnNaoPegarCarta.setEnabled(false);
-                    socket.close();
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
+                }finally 
+                {
+                	try {
+						socket.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
             }
         }).start();
