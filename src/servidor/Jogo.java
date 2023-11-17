@@ -30,10 +30,10 @@ class Jogo implements Runnable {
             while(true) {
             	jogador1.mostrarMensagem();
             	jogador2.mostrarMensagem();
-            	int num1 = jogador1.querCarta(baralho);            	
-            	int num2 = jogador2.querCarta(baralho);
+            	boolean pegouCarta1 = jogador1.querCarta(baralho);            	
+            	boolean pegouCarta2 = jogador2.querCarta(baralho);
             	
-            	if(num1 != 1 && num2 != 1) {
+            	if(pegouCarta1 && pegouCarta2 == false) {
                 	break;
                 }
             	

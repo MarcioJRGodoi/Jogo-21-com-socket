@@ -29,7 +29,7 @@ public class Jogador {
     	out.println("Quer pegar uma carta?");
     }
 
-    public int querCarta(Baralho baralho) throws IOException {
+    public boolean querCarta(Baralho baralho) throws IOException {
     	
          if(Integer.parseInt(in.readLine()) == 1) 
          {
@@ -44,9 +44,9 @@ public class Jogador {
          	}
          	pontuacao += carta.getValor();
                  cartas.add(carta.getNome());
-        	 return 1;
+        	 return true;
          }
-         return 2;
+         return false;
     }
 
     public void mostrarCartas() {
