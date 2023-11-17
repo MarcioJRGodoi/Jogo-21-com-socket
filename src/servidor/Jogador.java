@@ -49,11 +49,6 @@ public class Jogador {
          return false;
     }
 
-    public void mostrarCartas() {
-    	out.println("--------------------------------------------------------");
-        out.println("Suas Cartas"+ cartas);
-    }
-
     public int getPontuacao() {
         return pontuacao;
     }
@@ -72,13 +67,19 @@ public class Jogador {
     }
     
     public void resultado(int pontuacaoAdversario) {
-    	if (pontuacao > pontuacaoAdversario && pontuacao <= 21) {
-            out.println("Você ganhou!");
-        } else if (pontuacaoAdversario > pontuacao && pontuacaoAdversario <= 21) {
-            out.println("Você perdeu!");
-        } else {
-            out.println("Empate!");
-        }
+    	if (pontuacao > 21) {
+    	    if (pontuacaoAdversario > 21) {
+    	        out.println("Empate!");
+    	    } else {
+    	        out.println("Você perdeu!");
+    	    }
+    	} else if (pontuacaoAdversario > 21 || pontuacao > pontuacaoAdversario) {
+    	    out.println("Você ganhou!");
+    	} else if (pontuacao == pontuacaoAdversario) {
+    	    out.println("Empate!");
+    	} else {
+    	    out.println("Você perdeu!");
+    	}
     	out.println("Sua pontuacao: " +getPontuacao() + " Pontuacao do Adversario: " +pontuacaoAdversario);
     	//out.println("*");
     }

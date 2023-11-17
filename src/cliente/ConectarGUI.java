@@ -22,7 +22,7 @@ public class ConectarGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 100);
 
-        ImageIcon icone = new ImageIcon("cliente/blackjack.png");
+        ImageIcon icone = new ImageIcon("cliente/blackjack.jpg");
         frame.setIconImage(icone.getImage());
         // Cria o JTextField para a URL do servidor
         txtField = new JTextField();

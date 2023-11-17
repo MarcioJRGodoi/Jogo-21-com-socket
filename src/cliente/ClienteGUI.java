@@ -27,7 +27,7 @@ public class ClienteGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 400);
 
-        ImageIcon icone = new ImageIcon("cliente/blackjack.png");
+        ImageIcon icone = new ImageIcon("cliente/blackjack.jpg");
         frame.setIconImage(icone.getImage());
         // Cria o JButton para pegar uma carta
         btnPegarCarta = new JButton("Pegar Carta");

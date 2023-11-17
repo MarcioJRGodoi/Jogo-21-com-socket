@@ -25,24 +25,19 @@ class Jogo implements Runnable {
     @Override
     public void run() {
         try {
-            // Lida com o jogo aqui
-            
+            // Lida com o jogo aqui        
             while(true) {
             	jogador1.mostrarMensagem();
             	jogador2.mostrarMensagem();
             	boolean pegouCarta1 = jogador1.querCarta(baralho);            	
             	boolean pegouCarta2 = jogador2.querCarta(baralho);
             	
-            	if(pegouCarta1 && pegouCarta2 == false) {
+            	if(!pegouCarta1 && !pegouCarta2) {
                 	break;
-                }
-            	
+                }            	
             	jogador1.mostrarCartasDaMesa(jogador2.getNumCartas());
-            	jogador2.mostrarCartasDaMesa(jogador1.getNumCartas());
-            	        
-                
-            }
-            
+            	jogador2.mostrarCartasDaMesa(jogador1.getNumCartas());         	                    
+            }            
             jogador1.resultado(jogador2.getPontuacao());
         	jogador2.resultado(jogador1.getPontuacao());
             
