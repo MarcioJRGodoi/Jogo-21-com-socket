@@ -20,10 +20,13 @@ public class ConectarGUI {
         // Cria o JFrame
         frame = new JFrame("Conectar ao servidor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setSize(500, 100);
+        frame.setLocationRelativeTo(null);
 
         ImageIcon icone = new ImageIcon("cliente/blackjack.jpg");
         frame.setIconImage(icone.getImage());
+        
         // Cria o JTextField para a URL do servidor
         txtField = new JTextField();
         txtField.setColumns(30);
@@ -39,7 +42,8 @@ public class ConectarGUI {
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     new ClienteGUI(socket, in, out);
-                    frame.setVisible(false); // Esconde a janela de configuração
+                    frame.dispose();
+                    //frame.setVisible(false); // Esconde a janela de configuração
                 } catch (UnknownHostException ex) {
                     JOptionPane.showMessageDialog(frame, "URL do servidor não encontrada");
                 } catch (IOException ex) {
