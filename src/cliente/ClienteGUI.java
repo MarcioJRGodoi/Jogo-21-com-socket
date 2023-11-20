@@ -34,6 +34,7 @@ public class ClienteGUI {
         
         // Cria o JButton para pegar uma carta
         btnPegarCarta = new JButton("Pegar Carta");
+        btnPegarCarta.setBackground(Color.GREEN);
         btnPegarCarta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +47,7 @@ public class ClienteGUI {
 
         // Cria o JButton para não pegar uma carta
         btnNaoPegarCarta = new JButton("Não Pegar Carta");
+        btnNaoPegarCarta.setBackground(Color.RED);
         btnNaoPegarCarta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

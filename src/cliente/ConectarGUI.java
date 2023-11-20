@@ -33,6 +33,23 @@ public class ConectarGUI {
 
         // Cria o JButton para conectar
         btnConectar = new JButton("Conectar");
+        
+        Action conectarAcao = new AbstractAction() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public void actionPerformed(ActionEvent e) {
+                btnConectar.doClick();
+            }
+        };
+
+        // Mapeia a tecla Enter para a ação de conectar
+        btnConectar.getActionMap().put("conectar", conectarAcao);
+        btnConectar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ENTER"), "conectar");
+        
         btnConectar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
