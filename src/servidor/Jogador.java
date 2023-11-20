@@ -55,6 +55,7 @@ public class Jogador {
     }
 
     public void mostrarCartasDaMesa(int numCartasAdversario, String cartaadv) {
+    	out.println("NOVO JOGO");
         out.println("--------------------------------------------------------");
         out.println("Suas Cartas: " + cartas);
         out.println("Número de cartas do adversário: " + numCartasAdversario);

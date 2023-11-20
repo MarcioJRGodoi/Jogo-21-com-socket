@@ -77,11 +77,14 @@ public class ClienteGUI {
                 try {
                     String mensagemDoServidor;
                     while ((mensagemDoServidor = in.readLine()) != null) {
+                    	if (mensagemDoServidor.equals("NOVO JOGO")) {
+                            txtArea.setText("");
+                            mensagemDoServidor = in.readLine();
+                        }
                     	txtArea.append("Mensagem do servidor: " + mensagemDoServidor + "\n");
                     	btnPegarCarta.setEnabled(true);
                         btnNaoPegarCarta.setEnabled(true);
                     }
-                    
                     btnPegarCarta.setEnabled(false);
                     btnNaoPegarCarta.setEnabled(false);
                     
