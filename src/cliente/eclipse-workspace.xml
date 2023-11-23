@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project src with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/../../.."/>
+    <property name="dir.jarfile" value="C:/Users/Marcio/Desktop"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/Servidor.jar">
+            <manifest>
+                <attribute name="Main-Class" value="cliente.ConectarGUI"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/Jogo-21-com-socket/src"/>
+        </jar>
+        <delete dir="${dir.jarfile}/Servidor_lib"/>
+        <mkdir dir="${dir.jarfile}/Servidor_lib"/>
+    </target>
+</project>
