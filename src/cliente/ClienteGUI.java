@@ -43,6 +43,7 @@ public class ClienteGUI {
             public void actionPerformed(ActionEvent e) {
                 // Envia a resposta para o servidor
                 out.println("1");
+                txtArea.append("Aguardando jogador adversario\n");
                 btnPegarCarta.setEnabled(false);
                 btnNaoPegarCarta.setEnabled(false);
             }
@@ -56,6 +57,7 @@ public class ClienteGUI {
             public void actionPerformed(ActionEvent e) {
                 // Envia a resposta para o servidor
                 out.println("2");
+                txtArea.append("Aguardando jogador adversario\n");
                 btnPegarCarta.setEnabled(false);
                 btnNaoPegarCarta.setEnabled(false);
             }
@@ -82,6 +84,8 @@ public class ClienteGUI {
 
         txtArea = new JTextArea();
         txtArea.setEditable(false);
+        txtArea.setLineWrap(true);
+        txtArea.setWrapStyleWord(true);
 
         // Adiciona os componentes ao JFrame
         JPanel painelBotoes = new JPanel();

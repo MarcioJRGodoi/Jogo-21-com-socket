@@ -41,7 +41,7 @@ public class Jogador {
                     pontuacao -= 10;
                     asNaManga.remove(0);
             }
-            return true;
+            return true;          
         }
         return false;
     }
@@ -56,11 +56,11 @@ public class Jogador {
 
     public void mostrarCartasDaMesa(int numCartasAdversario, String cartaadv) {
     	out.println("NOVO JOGO");
-        out.println("--------------------------------------------------------");
+        //out.println("--------------------------------------------------------");
         out.println("Suas Cartas: " + cartas);
         out.println("Número de cartas do adversário: " + numCartasAdversario);
         out.println("Carta aberta adversario: " + cartaadv);
-        out.println("--------------------------------------------------------");
+       // out.println("--------------------------------------------------------");
     }
 
     public int getNumCartas() {
