@@ -81,7 +81,7 @@ public class Jogador {
         } else {
             out.println("Você perdeu!");
         }
-        out.println("Sua pontuacao: " + getPontuacao() + " Pontuacao do Adversario: " + pontuacaoAdversario);
+        out.println("Sua pontuacao: " + getPontuacao() + "\nPontuacao do Adversario: " + pontuacaoAdversario);
     }
 
     public void close() throws IOException {

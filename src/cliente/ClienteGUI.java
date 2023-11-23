@@ -14,13 +14,16 @@ public class ClienteGUI {
     private JFrame frame;
     private JButton btnPegarCarta;
     private JButton btnNaoPegarCarta;
+    private JButton btnNovoJogo;
     private JTextArea txtArea;
     private BufferedReader in;
     private PrintWriter out;
+    private String url;
 
-    public ClienteGUI(Socket socket, BufferedReader in, PrintWriter out) {
+    public ClienteGUI(Socket socket, BufferedReader in, PrintWriter out, String url) {
         this.in = in;
         this.out = out;
+        this.url = url;
 
         // Cria o JFrame
         frame = new JFrame("21(BlackJack)");
@@ -57,6 +60,25 @@ public class ClienteGUI {
                 btnNaoPegarCarta.setEnabled(false);
             }
         });
+        
+        btnNovoJogo = new JButton("Novo Jogo");
+        btnNovoJogo.setBackground(Color.BLUE);
+        btnNovoJogo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	try {
+            		socket.close();
+            		Socket socket = new Socket(url, 9000);
+                	BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    new ClienteGUI(socket, in, out, url);
+                	frame.dispose();                
+                } catch (IOException exception) {
+                	exception.printStackTrace();
+                }
+            	
+            }
+        });
 
         txtArea = new JTextArea();
         txtArea.setEditable(false);
@@ -85,9 +107,9 @@ public class ClienteGUI {
                     	btnPegarCarta.setEnabled(true);
                         btnNaoPegarCarta.setEnabled(true);
                     }
-                    btnPegarCarta.setEnabled(false);
-                    btnNaoPegarCarta.setEnabled(false);
-                    
+                    painelBotoes.add(btnNovoJogo);
+                    btnPegarCarta.setVisible(false);
+                    btnNaoPegarCarta.setVisible(false);  
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

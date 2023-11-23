@@ -58,7 +58,7 @@ public class ConectarGUI {
                     Socket socket = new Socket(txtField.getText(), 9000);
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                    new ClienteGUI(socket, in, out);
+                    new ClienteGUI(socket, in, out, txtField.getText());
                     frame.dispose();
                     //frame.setVisible(false); // Esconde a janela de configuração
                 } catch (UnknownHostException ex) {
