@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 public class ConectarGUI {
     private JFrame frame;
@@ -56,8 +58,8 @@ public class ConectarGUI {
                 // Conecta ao servidor e inicia a GUI do cliente
                 try {
                     Socket socket = new Socket(txtField.getText(), 9000);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+                    PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
                     new ClienteGUI(socket, in, out, txtField.getText());
                     frame.dispose();
                     //frame.setVisible(false); // Esconde a janela de configuração

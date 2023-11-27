@@ -1,14 +1,23 @@
 package cliente;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class ClienteGUI {
     private JFrame frame;
@@ -50,7 +59,7 @@ public class ClienteGUI {
         });
 
         // Cria o JButton para não pegar uma carta
-        btnNaoPegarCarta = new JButton("Não Pegar Carta");
+        btnNaoPegarCarta = new JButton("N�o Pegar Carta");
         btnNaoPegarCarta.setBackground(Color.RED);
         btnNaoPegarCarta.addActionListener(new ActionListener() {
             @Override
@@ -65,14 +74,15 @@ public class ClienteGUI {
         
         btnNovoJogo = new JButton("Novo Jogo");
         btnNovoJogo.setBackground(Color.BLUE);
+        btnNovoJogo.setForeground(Color.WHITE);
         btnNovoJogo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	try {
             		socket.close();
             		Socket socket = new Socket(url, 9000);
-                	BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+            		PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
                     new ClienteGUI(socket, in, out, url);
                 	frame.dispose();                
                 } catch (IOException exception) {
